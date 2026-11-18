@@ -1,0 +1,6 @@
+out/
+*.class
+data/books.txt
+.idea/
+.vscode/
+.DS_Store
