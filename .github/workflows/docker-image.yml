@@ -1,9 +1,11 @@
+
 name: Build and Push Docker Image
 
 on:
   push:
     branches:
       - main
+
   workflow_dispatch:
 
 jobs:
@@ -11,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout GitHub Repository
         uses: actions/checkout@v6
 
       - name: Login to Docker Hub
@@ -20,9 +22,12 @@ jobs:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and Push
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Build and Push Docker Image
         uses: docker/build-push-action@v7
         with:
           context: .
           push: true
-          tags: dockersaravanamk/java-library:latest
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/library-management-system:latest
