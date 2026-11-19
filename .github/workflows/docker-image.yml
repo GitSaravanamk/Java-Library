@@ -25,4 +25,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: dockersaravanamk/java-library:latest
+          tags: DOCKER_USERNAME/java-library:latest
